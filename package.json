@@ -1,0 +1,24 @@
+{
+  "name": "githubaction",
+  "version": "1.0.0",
+  "description": "Learning github action with this walkthrough: https://www.youtube.com/watch?v=8KAN16uCgVI",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ellenn-A/githubaction.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ellenn-A/githubaction/issues"
+  },
+  "homepage": "https://github.com/Ellenn-A/githubaction#readme",
+  "devDependencies": {
+    "@types/node": "^20.4.10",
+    "typescript": "^5.1.6"
+  }
+}
