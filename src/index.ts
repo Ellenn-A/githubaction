@@ -1,20 +1,18 @@
 import { getInput } from "@actions/core"
-import {context} from "@actions/github"
+import {context, getOctokit} from "@actions/github"
 
 type GithubContext = typeof context
 
 const inputName = getInput('name')
+const ghToken = getInput('githubToken')
 
 greet(inputName, getRepoURL(context))
 
-console.log('Action info -----------')
-console.log('eventname: ', context.eventName)
-console.log('sha: ', context.sha)
-console.log('ref: ', context.ref)
-console.log('workflow: ', context.workflow)
-console.log('job: ', context.job)
-
-console.log(JSON.stringify(context.payload, undefined,2))
+getDiff().then(files => {
+    console.log(`
+    Your PR diff: \n
+    ${JSON.stringify(files,undefined,2)}`)
+})
 
 function greet(name:string, repoUrl: string){
     console.log(`Hello ${name}! You are running Github Action in ${repoUrl}`)
@@ -22,4 +20,19 @@ function greet(name:string, repoUrl: string){
 
 function getRepoURL({repo, serverUrl}:GithubContext):string{
     return `${serverUrl}/${repo.owner}/${repo.repo}`
+}
+
+async function getDiff(){
+    if(ghToken && context.payload.pull_request){
+        const octokit = getOctokit(ghToken)
+
+        const result = await octokit.rest.repos.compareCommits({
+            repo: context.repo.repo,
+            owner:context.repo.owner,
+            head: context.payload.pull_request.head.sha,
+            base: context.payload.pull_request.base.sha,
+            page: 100
+        })
+        return result.data.files || []
+    }
 }

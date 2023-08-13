@@ -31,3 +31,4 @@ jobs:
         uses: ./
         with: 
           name: 'Helenki (from workflow)'
+          githubToken: ${{secrets.GITHUB_TOKEN}}

@@ -7,6 +7,9 @@ inputs:
     description: 'Name to greet'
     required: false
     default: 'Helenki'
+  githubToken:
+    description: 'Github access token'
+    required: false 
 
 runs: 
   using: 'node16'
