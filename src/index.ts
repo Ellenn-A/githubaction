@@ -37,6 +37,6 @@ async function getDiff() {
       repo: context.repo.repo,
       owner: context.repo.owner,
     });
-    return result.data.name || [];
+    return result.data.git_url || [];
   }
 }
