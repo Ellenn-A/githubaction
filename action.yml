@@ -2,6 +2,12 @@ name: 'Conconant vowel ratio'
 author: 'Helena A'
 description: 'Custom GH action with typescript'
 
+inputs:
+  name: 
+    description: 'Name to greet'
+    required: false
+    default: 'Helenki'
+
 runs: 
   using: 'node16'
   main: 'dist/index.js'
