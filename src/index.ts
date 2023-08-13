@@ -10,7 +10,7 @@ greet(inputName, getRepoURL(context));
 
 getDiff().then((files) => {
   console.log(`
-    Your info: \n
+    Your info: 
     ${JSON.stringify(files, undefined, 2)}`);
 });
 
@@ -37,6 +37,6 @@ async function getDiff() {
       repo: context.repo.repo,
       owner: context.repo.owner,
     });
-    return result.data.content || [];
+    return result.data || [];
   }
 }
